@@ -9,8 +9,7 @@ monthlyHours=100
 monthlyWorkingDays=20
 monthlyWage=0
 workingHours=0
-for (( i=0; i<$monthlyWorkingDays && $workingHours<$monthlyHours; i++ ))
-do
+function getWorkHours() {
 	checkemp=$((RANDOM%3))
 	case $checkemp in
 		$isPartTime)
@@ -23,8 +22,13 @@ do
 			empHours=0
 			;;
 	esac
-	workingHours=$(($workingHours+$empHours))
-done
-monthlyWage=$(($workingHours*$empWagePerHour))
-echo " Employee's Monthly Wage is: " $monthlyWage
+	echo $empHours
+}
 
+for (( i=0; i<$monthlyWorkingDays && $workingHours<$monthlyHours; i++ ))
+do
+	empHours="$(getWorkHours)"
+	workingHours=$((workingHours+empHours))
+done
+monthlyWage=$(($empWagePerHour*$workingHours))
+echo "Employee's Monthly Wage is : " $monthlyWage
