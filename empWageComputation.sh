@@ -28,7 +28,9 @@ function getWorkHours() {
 for (( i=0; i<$monthlyWorkingDays && $workingHours<$monthlyHours; i++ ))
 do
 	empHours="$(getWorkHours)"
+	dailyWages[i]=$((empHours*empWagePerHour))
 	workingHours=$((workingHours+empHours))
 done
+echo "Employee's Daily Wage : ${dailyWages[@]}"
 monthlyWage=$(($empWagePerHour*$workingHours))
 echo "Employee's Monthly Wage is : " $monthlyWage
