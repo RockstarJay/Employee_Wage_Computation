@@ -30,6 +30,7 @@ do
 	empHours="$(getWorkHours)"
 	dailyWages[i]=$((empHours*empWagePerHour))
 	workingHours=$((workingHours+empHours))
+	echo "Day$((i+1)) Wage Is: ${dailyWages[i]}"
 done
 echo "Employee's Daily Wage : ${dailyWages[@]}"
 monthlyWage=$(($empWagePerHour*$workingHours))
